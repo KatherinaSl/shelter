@@ -1,5 +1,4 @@
 import cards from './cards.js';
-// console.log(cards)
 
 const cardContainer = document.querySelector('.card_container');
 const buttonRight = document.querySelector('.arrow-right');

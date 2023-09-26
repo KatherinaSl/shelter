@@ -107,7 +107,13 @@ h3 {
     letter-spacing: 2.1px;
 }
 
-.slider {
+.pagination {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.showcase {
     max-width: 1200px;
     display: grid;
     grid-template-rows: repeat(2, 435px);
@@ -139,7 +145,6 @@ h3 {
     letter-spacing: 1.2px;
 }
 
-
 .slider-card button {
     border-radius: 100px;
     border: 2px solid #F1CDB3;
@@ -153,64 +158,38 @@ h3 {
     cursor: pointer;
 }
 
-
-.pagination {
+.pagination-container {
     width: 340px;
     display: flex;
-    justify-self: center;
     justify-content: space-between;
     cursor: pointer;
+    align-self: center;
 }
 
-
-.pagination a {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    padding: 14px 14px 16px;
-    border: 2px solid #CDCDCD;
-    border-radius: 100px;
-
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 20px;
-    color: #CDCDCD;
-
-    text-decoration: none;
-    text-align: center;
-}
-
-.pagination a:nth-child(3) {
-    width: 20px;
-    height: 20px;
-    padding: 14px 14px 16px;
-    background-color: #F1CDB3;
-    border: #F1CDB3;
-    border-radius: 100px;
-
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 20px;
-    color: #292929;
-    vertical-align: middle;
-}
-
-.pagination a:nth-child(4),
-.pagination a:nth-child(5) {
-    width: 20px;
-    height: 20px;
-    padding: 14px 14px 16px;
+.pagination-container button {
+    width: 52px;
+    height: 52px;
+    padding: 14px 0px 15px 0px;
     border: 2px solid #F1CDB3;
     border-radius: 100px;
 
+    cursor: pointer;
+}
+
+.arrows {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 1.2px;
+}
+
+.current-page {
+    background-color: #F1CDB3;
     font-family: 'Fira Sans', sans-serif;
     font-size: 20px;
     color: #292929;
-
-    vertical-align: middle;
 }
 
-
-/* pagination hover effect on non-active */
-/* .pagination a:hover:not(.active) */
 
 /* FOOTER */
 
@@ -278,6 +257,12 @@ address a img {
 
 /* MEDIA QUERIES */
 
+@media screen and (min-width: 1280px) {
+    .pagination-container button:hover {
+        background-color: #F1CDB3;
+    }
+}
+
 @media screen and (max-width: 1279px) and (min-width: 768px) {
     .header {
         min-width: 60%;
@@ -290,30 +275,32 @@ address a img {
 
     .our-friends {
         min-width: 60%;
-        padding: 80px 30px 70px 30px;
+        padding: 80px 30px 75px 30px;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 15px;
     }
 
-    .slider {
+    .pagination {
+        gap: 25px;
+    }
+
+    .showcase {
+        width: 580px;
         display: grid;
         column-gap: 40px;
         row-gap: 30px;
         grid-template-rows: repeat(3, 435px);
         grid-template-columns: repeat(2, 270px);
-        padding: 0 64px 0 64px;
         align-self: center;
     }
 
-    .slider-card:nth-child(7),
-    .slider-card:nth-child(8) {
-        display: none;
-    }
-
-    .pagination {
-        align-self: center;
-        padding-top: 10px;
+    /* .pagination-container button:hover {
+        pointer-events: none
+    } */
+    /* .pagination-container button:focus, */
+    .pagination-container button:active {
+        background-color: #F1CDB3;
     }
 
     .information {
@@ -454,7 +441,10 @@ address a img {
     /* SECTION  FRIENDS*/
     .our-friends {
         min-width: 25%;
-        padding: 42px 10px 35px;
+        padding: 42px 10px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
     }
 
     .pets-title {
@@ -462,24 +452,24 @@ address a img {
         letter-spacing: 1.5px;
     }
 
-    .slider {
+    .pagination {
+        gap: 40px;
+    }
+
+    .showcase {
         display: flex;
         width: 270px;
         flex-direction: column;
         padding: 0 15px 0 15px;
-        justify-self: center
+        grid-row-gap: 25px;
     }
 
-    .slider-card:nth-child(4),
-    .slider-card:nth-child(5),
-    .slider-card:nth-child(6),
-    .slider-card:nth-child(7),
-    .slider-card:nth-child(8) {
-        display: none;
-    }
-
-    .pagination {
+    .pagination-container {
         width: 300px;
+    }
+
+    .pagination-container button:active {
+        background-color: #F1CDB3;
     }
 
     /* FOOTER */
@@ -489,8 +479,13 @@ address a img {
         gap: 0px;
     }
 
-    .contacts,
     .locations {
+        height: 222px;
+        padding: 0 10px 45px;
+        align-items: center;
+    }
+
+    .contacts {
         height: 208px;
         padding: 0 10px 40px;
         align-items: center;
