@@ -318,11 +318,135 @@ h3 {
     text-decoration: none;
 }
 
-
 .pets-content-button:hover {
     cursor: pointer;
     background-color: #FFF;
     border: 3px solid #F1CDB3;
+}
+
+.pop-up {
+    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(41, 41, 41, 0.60);
+}
+
+.popup-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    position: relative;
+    width: 952px;
+    height: 552px;
+    align-self: center;
+}
+
+.pets-container {
+    margin-top: 52px;
+    width: 900px;
+    height: 500px;
+    border-radius: 20px;
+    display: flex;
+    background-color: #FAFAFA;
+}
+
+.popup-button {
+    width: 52px;
+    height: 52px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.scroll {
+    overflow-y: hidden;
+}
+
+.popup-information {
+    display: flex;
+}
+
+.popup-information img {
+    border-radius: 10px;
+}
+
+.pets-description {
+    padding: 50px 0 0 30px;
+}
+
+.pets-description .title {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 2.1px;
+    padding-bottom: 10px;
+}
+
+.pets-description .subtitle {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 115%;
+    letter-spacing: 1.2px;
+
+    padding-bottom: 40px;
+}
+
+.pets-description .description {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: 0.9px;
+    text-align: left;
+    padding: 0 20px 40px 0;
+}
+
+.pets-description ul {
+    list-style-type: none;
+}
+
+.pets-description ul li::before {
+    content: "\2022";
+    color: #F1CDB3;
+    font-weight: bold;
+    display: inline-block;
+    width: 4px;
+    padding-right: 10px;
+}
+
+.pets-description ul li {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: 0.9px;
+
+    padding-bottom: 11px;
 }
 
 /* SECTION HELP */
@@ -428,6 +552,7 @@ h3 {
     letter-spacing: 1.2px;
     padding-left: 30px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .donation-content-button img {
@@ -508,6 +633,14 @@ address a img {
 
 
 /* MEDIA QUERIES */
+@media screen and (max-width: 1280px) {
+
+    .popup-button:hover {
+        background-color: #FDDCC4;
+    }
+}
+
+
 @media screen and (max-width: 1279px) and (min-width: 768px) {
 
     .container {
@@ -594,6 +727,40 @@ address a img {
         width: 270px;
     }
 
+    .popup-content {
+        width: 682px;
+        height: 402px;
+    }
+
+    .popup-button {
+        right: 9px;
+    }
+
+    .popup-button:active {
+        background-color: #FDDCC4;
+    }
+
+    .pets-container {
+        width: 630px;
+        height: 350px;
+    }
+
+    .pets-description {
+        padding: 10px 0 0 11px;
+    }
+
+    .pets-description .subtitle {
+        padding-bottom: 20px;
+    }
+
+    .pets-description .description {
+        font-size: 13px;
+        padding: 0 9px 20px 0;
+    }
+
+    .pets-description ul li {
+        padding-bottom: 6px;
+    }
 
     /* SECTION HELP */
     .help .wrapper {
@@ -697,7 +864,7 @@ address a img {
     }
 
     .fixed-position {
-        position: fixed;
+        overflow-y: hidden
     }
 
     .header {
@@ -880,6 +1047,49 @@ address a img {
 
     .arrow-right {
         order: 3;
+    }
+
+    .pop-up {
+        z-index: 2;
+    }
+    .popup-content {
+        width: 271px;
+        height: 393px;
+    }
+
+    .pets-container {
+        width: 240px;
+        height: 341px;
+    }
+
+    .popup-button {
+        right: 0;
+    }
+
+    .popup-button:active {
+        background-color: #FDDCC4;
+    }
+
+    .popup-information img {
+        display: none;
+    }
+
+    .pets-description {
+        padding: 10px 0 0 0;
+    }
+
+    .pets-description .subtitle {
+        padding-bottom: 20px;
+    }
+
+    .pets-description .description {
+        font-size: 13px;
+        padding: 0 10px 24px 0;
+        text-align: justify;
+    }
+
+    .pets-description ul li {
+        padding-bottom: 6px;
     }
 
     /* SECTION HELP */

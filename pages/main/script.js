@@ -19,44 +19,46 @@ let isRightClick = false;
 let isLeftClick = false;
 
 let menuButton = document.querySelector('.icon');
+let menuOverlay = document.querySelector('.menu');
 let menu = document.querySelectorAll('li');
 let cover = document.getElementById('cover');
+let petsInformation = document.querySelector('.pets-container');
+let popup = document.querySelector('.pop-up');
+let popupButton = document.querySelector('.popup-button');
 
 // BURGER MENU 
 menuButton.addEventListener('click', function () {
     if (mobileMediaQuery.matches) {
-        menuButton = document.querySelector('.icon');
-        let menuOverlay = document.querySelector('.menu');
         menuButton.classList.toggle('active');
         menuOverlay.classList.toggle('open');
         document.querySelector('body').classList.toggle('fixed-position');
     }
 });
 
-document.querySelector('.start-content').addEventListener('click', function () {
+// close burger menu
+document.addEventListener('click', (event) => {
     if (mobileMediaQuery.matches) {
-        menuButton = document.querySelector('.icon');
-        let menuOverlay = document.querySelector('.menu');
-        menuButton.classList.remove('active');
-        menuOverlay.classList.remove('open');
+        if (event.target === cover) {
+            menuButton.classList.remove('active');
+            menuOverlay.classList.remove('open');
+            cover.classList.remove('covering')
+            document.querySelector('body').classList.remove('fixed-position');
+        }
     }
 })
 
-document.querySelector('.logo').addEventListener('click', function () {
-    if (mobileMediaQuery.matches) {
-        menuButton = document.querySelector('.icon');
-        let menuOverlay = document.querySelector('.menu');
-        menuButton.classList.remove('active');
-        menuOverlay.classList.remove('open');
-
-    }
-})
+// for contacts anchor
+window.disableMenu = function disableMenu() {
+    menuButton.classList.remove('active');
+    menuOverlay.classList.remove('open');
+    cover.classList.remove('covering')
+    document.querySelector('body').classList.remove('fixed-position');
+}
 
 // BURGER MENU LIST ITEMS
 for (let items of menu) {
     items.addEventListener('click', (event) => {
         menuButton = document.querySelector('.icon');
-        let menuOverlay = document.querySelector('.menu');
         menuButton.classList.remove('active');
         menuOverlay.classList.remove('open');
     })
@@ -66,7 +68,6 @@ for (let items of menu) {
 menuButton.addEventListener('click', function () {
     cover.classList.toggle('covering');
 })
-
 
 // SLIDER SECTION PETS
 cards.forEach((pet) => {
@@ -104,19 +105,31 @@ if (mobileMediaQuery.matches) {
 }
 
 // create one card
-function createCardComponent(cards) {
+function createCardComponent(card) {
     const cardComponent = document.createElement('li');
     cardComponent.classList.add('slider-card');
-    const img = document.createElement('img')
-    img.src = cards.img;
-    img.alt = cards.name.toLowerCase();
-    img.style.width = '270px'
-    const title = document.createElement('p')
-    title.textContent = cards.name;
-    const button = document.createElement('button')
-    button.textContent = 'Learn more'
+    cardComponent.id = card.name
+    cardComponent.onclick = function () {
+        popup.classList.toggle('hidden');
+        document.body.classList.toggle('scroll');
+        for (let item of cards) {
+            if (this.id === item.name) {
+                petsInformation.removeChild(petsInformation.firstChild);
+                petsInformation.append(createPopUpElement(item))
+            }
+        }
+    };
 
-    cardComponent.append(img, title, button)
+    const img = document.createElement('img');
+    img.src = card.img;
+    img.alt = card.name.toLowerCase();
+    img.style.width = '260px';
+    const title = document.createElement('p');
+    title.textContent = card.name;
+    const button = document.createElement('button');
+    button.textContent = 'Learn more';
+
+    cardComponent.append(img, title, button);
     return cardComponent
 }
 
@@ -285,3 +298,64 @@ function enableButtons() {
 }
 
 
+//POP UP
+
+// close button
+popupButton.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    document.body.classList.toggle('scroll');
+})
+
+document.addEventListener('click', (event) => {    
+    const closest = event.target.closest('.popup-information');
+    const closestCard = event.target.closest('.slider-card');
+    if (closest === null && !popup.classList.contains('hidden') && closestCard === null) {
+        popup.classList.add('hidden');
+        document.body.classList.remove('scroll');
+    }
+})
+
+function createPopUpElement(card) {
+    const popup = document.createElement('div');
+    popup.classList.add("popup-information")
+
+    const img = document.createElement('img');
+    img.src = card.img;
+    img.alt = card.name.toLowerCase();
+
+    const div = document.createElement('div');
+    div.classList.add('pets-description');
+
+    const title = document.createElement('p');
+    title.classList.add('title');
+    title.textContent = card.name;
+
+    const subtitle = document.createElement('p');
+    subtitle.classList.add('subtitle')
+    subtitle.textContent = card.type + ' - ' + card.breed;
+
+    const description = document.createElement('p');
+    description.classList.add('description')
+    description.textContent = card.description;
+    const list = document.createElement('ul');
+
+    const listItem1 = getPopupListElement("Age: ", card.age);
+    const listItem2 = getPopupListElement("Inoculations: ", card.inoculations);
+    const listItem3 = getPopupListElement("Diseases: ", card.diseases);
+    const listItem4 = getPopupListElement("Parasites: ", card.diparasitesseases);
+
+    list.append(listItem1, listItem2, listItem3, listItem4);
+    div.append(title, subtitle, description, list);
+
+    popup.append(img, div);
+    return popup
+
+}
+
+function getPopupListElement(text, value) {
+    const listItem = document.createElement('li');
+    const b = document.createElement("b");
+    b.textContent = text;
+    listItem.append(b, value);
+    return listItem;
+}

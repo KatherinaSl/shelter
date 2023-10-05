@@ -26,7 +26,7 @@
                     <li><a href="../main/index.html#">About the shelter</a></li>
                     <li><span>Our pets</span></li>
                     <li><a href="../main/index.html#help">Help the shelter</a></li>
-                    <li><a href="#contacts">Contacts</a></li>
+                    <li><a href="#contacts" onclick="disableMenu()">Contacts</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,8 +42,19 @@
                 <h2 class="pets-title">Our friends who<br> are looking for a house</h2>
 
                 <div class="pagination"></div>
-                
+                <div class="pop-up hidden">
+                    <div class="popup-content">
+                        <p class="popup-button">
+                            <img src="/assets/icons/modal_close_button.svg" alt="close-button">
+                        </p>
+                        <div class="pets-container">
+
+                        </div>
+                    </div>
+
+                </div>
             </section>
+
         </div>
     </main>
 

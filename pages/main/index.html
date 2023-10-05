@@ -26,8 +26,8 @@
                     <ul id="myLinks">
                         <li><span>About the shelter</span></li>
                         <li><a href="../pets/index.html#humanFriends">Our pets</a></li>
-                        <li><a href='#help'>Help the shelter</a></li>
-                        <li><a href='#contacts'>Contacts</a></li>
+                        <li><a href="#help">Help the shelter</a></li>
+                        <li><a href="#contacts" onclick="disableMenu()">Contacts</a></li>
                     </ul>
                 </nav>
             </div>
@@ -75,15 +75,28 @@
         <div class="our-friends wrapper">
             <h2 class="pets-title">Our friends who<br> are looking for a house</h2>
             <div class="slider">
+
                 <button class="arrow-left">&#8592;</button>
                 <div class="carousel">
-                   <div class="card_container">
+                    <div class="card_container">
 
-                   </div> 
-                </div>                
-
+                    </div>
+                </div>
                 <button class="arrow-right">&#8594;</button>
             </div>
+
+            <div class="pop-up hidden">
+                <div class="popup-content">
+                    <p class="popup-button">
+                        <img src="/assets/icons/modal_close_button.svg" alt="close-button">
+                    </p>
+                    <div class="pets-container">
+
+                    </div>
+                </div>
+
+            </div>
+
             <button class="pets-content-button" onclick="location.href='../pets/index.html#ourFriends'">
                 Get to know the rest
             </button>
@@ -185,6 +198,7 @@
         </div>
     </footer>
     <script type="module" src="script.js"></script>
+    <script type="module" src="cards.js"></script>
 </body>
 
 </html>
